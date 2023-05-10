@@ -7,6 +7,9 @@
   height: 100vh;
 }
 
+.mainwrap{
+  color: aliceblue;
+}
 .FormWrapper{
   display: flex;
   flex-direction: column;
