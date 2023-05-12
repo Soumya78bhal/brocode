@@ -13,6 +13,17 @@ const EditorPage = () => {
   const [clients,setClients]=useState([
     {socketId:1,username:'Rahul'},
     {socketId:2,username:'Raghab'},
+    {socketId:3,username:'damar hey'},
+    {socketId:3,username:'damar'},
+    {socketId:3,username:'damar'},
+    {socketId:3,username:'damar'},
+    {socketId:3,username:'damar'},
+    {socketId:3,username:'damar'},
+    {socketId:3,username:'damar'},
+    {socketId:3,username:'damar'},
+    {socketId:3,username:'damar'},
+    {socketId:3,username:'damar'},
+    {socketId:3,username:'damar'},
     {socketId:3,username:'damar'},
   ])
 
@@ -23,9 +34,9 @@ const EditorPage = () => {
             <img src="/coding.png" className='logo' alt="logo" />
         </div>
         
-        <div className='asideinner'>
-          <div>Connected</div>  
-          <div className='Connectedmembers'>
+        <div className='lines asideinner'>
+          <div className='lines'>Connected</div>  
+          <div className='lines Connectedmembers'>
             {clients.map((client)=><Client key={client.socketId} username={client.username}/>)}
           </div>
         </div>
