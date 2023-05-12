@@ -20,7 +20,8 @@ const HomePage = () => {
         }
         navigate(`/editor/${roomId}`,{
             state:{
-                Username
+                username:Username,
+                roomId:roomId              
             }
         })
     }

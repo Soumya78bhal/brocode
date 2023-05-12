@@ -7,9 +7,7 @@
   height: 100vh;
 }
 
-.mainwrap{
-  color: aliceblue;
-}
+
 .FormWrapper{
   display: flex;
   flex-direction: column;
@@ -45,6 +43,7 @@
 .logo{
   height: 100px;
   width: 100px;
+  
 }
 .MainLabel{
   width:100%;
@@ -66,6 +65,47 @@
   justify-content: center;
 
 }
-input{
+.input{
   margin-bottom: 15px;
+}
+.mainwrap{
+  color: aliceblue;
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  height: 100vh;
+}
+.editorwrap{
+  width: 80% ;
+}
+.aside{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-right: 2px solid #424242;
+}
+.asideinner{
+  border-top: 2px solid #424242;
+  flex: 1;
+  
+}
+div{
+  margin-bottom: 5px;
+}
+.username{
+  margin-left: 8px;
+}
+.btn{
+  height: 30px;
+}
+button{
+  margin-bottom: 5px;
+  border-radius: 10px;
+  font-weight: bolder;
+}
+.leavebtn{
+  background-color: red;
+  
+}
+input{
+  margin-bottom: 8px;
 }
