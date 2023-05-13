@@ -75,10 +75,7 @@
   overflow-y: hidden;
  
 }
-.editorwrap{
-  width: 80% ;
-  border: 0px solid black;
-}
+
 .aside{
   display: flex;
   flex-direction: column;
@@ -116,12 +113,9 @@ input{
   overflow-y: auto;
   overflow-x:hidden;
 }
-.edit{
-  height: 100%;
-  width: 99%;
-  background-color: black;
-  color: aliceblue;
-  text-align:left;
-  font-size: larger;
-  
+.CodeMirror{
+  height:100% !important;
+  font-size: 20px;
 }
+
+
