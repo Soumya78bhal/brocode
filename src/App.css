@@ -113,12 +113,4 @@ input{
   overflow-y: auto;
   overflow-x:hidden;
 }
-.edit{
-  height: 100%;
-  width: 99%;
-  background-color: black;
-  color: aliceblue;
-  text-align:left;
-  font-size: larger;
-  
-}
+
