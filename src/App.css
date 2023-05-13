@@ -75,10 +75,7 @@
   overflow-y: hidden;
  
 }
-.editorwrap{
-  width: 80% ;
-  border: 0px solid black;
-}
+
 .aside{
   display: flex;
   flex-direction: column;
