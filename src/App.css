@@ -113,4 +113,9 @@ input{
   overflow-y: auto;
   overflow-x:hidden;
 }
+.CodeMirror{
+  height:100% !important;
+  font-size: 20px;
+}
+
 
