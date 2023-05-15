@@ -1,11 +1,32 @@
-import React,{useState} from 'react'
+import React,{useEffect, useRef, useState} from 'react'
 import Client from '../components/Client.js'
 import Editor from '../components/Editor.js'
 import { toast } from 'react-hot-toast'
 import { useLocation } from 'react-router-dom'
+import { initSocket } from '../socket.js'
+import ACTIONS from '../Actions.js'
 
 const EditorPage = () => {
   const location=useLocation();
+  const socketRef=useRef(null);
+  const useref=useRef(false);
+  useEffect(()=>{
+    const init=async()=>{
+      socketRef.current=await initSocket();
+      
+      // socketRef.current.emit(ACTIONS.JOIN,{
+      //   roomId,
+      //   username: location.state?.Username,
+      // }) 
+    }
+    if(useref.current===false){
+      init();
+      useref.current=true;
+    }
+    
+  },[]);
+
+ 
   const HandleCopy=(e)=>{
    
       toast.success(`Room Id copied`)
@@ -14,17 +35,7 @@ const EditorPage = () => {
     {socketId:1,username:'Rahul'},
     {socketId:2,username:'Raghab'},
     {socketId:3,username:'damar hey'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
+ 
   ])
 
   return (

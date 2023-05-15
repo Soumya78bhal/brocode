@@ -23,7 +23,6 @@ const Editor = () => {
                 }
             );   
         }
-        console.log("hello")
         if(useref.current===false){
           init();
         }
