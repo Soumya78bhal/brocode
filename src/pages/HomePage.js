@@ -13,6 +13,7 @@ const HomePage = () => {
         SetRoomId(id);
         toast.success('Created new room' )
     }
+    
     const JoinRoom=(e)=>{
         if(!roomId || !Username){
             toast.error('Room ID and Username required');
@@ -21,8 +22,7 @@ const HomePage = () => {
         navigate(`/editor/${roomId}`,{
             
             state:{
-               Username,
-                          
+               Username,   
             }
         })
     }
