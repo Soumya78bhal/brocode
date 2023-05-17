@@ -28,11 +28,19 @@ const EditorPage = () => {
         roomId,
         username: location.state?.Username,
       }) 
+      socketRef.current.on(ACTIONS.JOINED,({clients,socketId,username})=>{
+        if(username!==location.state?.Username){
+          toast.success(`${username} has joined`);
+        }
+        setClients(clients);
+      })
     }
     if(useref.current===false){
       init();
       useref.current=true;
     }
+
+    
     
   },[]);
 
@@ -42,9 +50,7 @@ const EditorPage = () => {
       toast.success(`Room Id copied`)
   }
   const [clients,setClients]=useState([
-    {socketId:1,username:'Rahul'},
-    {socketId:2,username:'Raghab'},
-    {socketId:3,username:'damar hey'},
+   
  
   ])
   if(location.state==null){
