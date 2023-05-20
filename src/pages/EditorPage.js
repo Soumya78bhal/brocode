@@ -24,16 +24,25 @@ const EditorPage = () => {
         toast.error(err);
         navigate('/');
       }
+
       socketRef.current.emit(ACTIONS.JOIN,{
         roomId,
         username: location.state?.Username,
-      }) 
+      });
+
       socketRef.current.on(ACTIONS.JOINED,({clients,socketId,username})=>{
         if(username!==location.state?.Username){
           toast.success(`${username} has joined`);
         }
         setClients(clients);
-      })
+      });
+
+      socketRef.current.on(ACTIONS.DISCONNECTED,({socketId,username})=>{
+        toast.success(`${username} left the room`);
+        setClients((prev)=>{
+          return prev.filter((client)=>client.socketId !==socketId)
+        })
+      });
     }
     if(useref.current===false){
       init();
