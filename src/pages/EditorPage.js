@@ -48,7 +48,7 @@ const EditorPage = () => {
       init();
       useref.current=true;
     }
-
+    
     
     
   },[]);
@@ -82,7 +82,7 @@ const EditorPage = () => {
           <button className='btn leavebtn'>Leave</button>
       </div>
       <div className='editorWrap'>
-          <Editor></Editor>
+          <Editor socketRef={socketRef} roomId={roomId}/>
         </div>
     </div>
   )
