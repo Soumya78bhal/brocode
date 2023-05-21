@@ -1,32 +1,70 @@
-import React,{useState} from 'react'
+import React,{useEffect, useRef, useState} from 'react'
 import Client from '../components/Client.js'
 import Editor from '../components/Editor.js'
 import { toast } from 'react-hot-toast'
-import { useLocation } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { initSocket } from '../socket.js'
+import ACTIONS from '../Actions.js'
 
 const EditorPage = () => {
+  const navigate=useNavigate();
   const location=useLocation();
+  const socketRef=useRef(null);
+  const useref=useRef(false);
+  const {roomId}=useParams();
+ 
+  useEffect(()=>{
+    const init=async()=>{
+      socketRef.current=await initSocket();
+      socketRef.current.on('connect_error',(err)=>handleError(err));
+      socketRef.current.on('connect_failed',(err)=>handleError(err));
+      
+      function handleError(err){
+        console.log('Connection failed',err);
+        toast.error(err);
+        navigate('/');
+      }
+
+      socketRef.current.emit(ACTIONS.JOIN,{
+        roomId,
+        username: location.state?.Username,
+      });
+
+      socketRef.current.on(ACTIONS.JOINED,({clients,socketId,username})=>{
+        if(username!==location.state?.Username){
+          toast.success(`${username} has joined`);
+        }
+        setClients(clients);
+      });
+
+      socketRef.current.on(ACTIONS.DISCONNECTED,({socketId,username})=>{
+        toast.success(`${username} left the room`);
+        setClients((prev)=>{
+          return prev.filter((client)=>client.socketId !==socketId)
+        })
+      });
+    }
+    if(useref.current===false){
+      init();
+      useref.current=true;
+    }
+    
+    
+    
+  },[]);
+
+ 
   const HandleCopy=(e)=>{
    
       toast.success(`Room Id copied`)
   }
   const [clients,setClients]=useState([
-    {socketId:1,username:'Rahul'},
-    {socketId:2,username:'Raghab'},
-    {socketId:3,username:'damar hey'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
-    {socketId:3,username:'damar'},
+   
+ 
   ])
-
+  if(location.state==null){
+     return navigate('/');
+  }
   return (
     <div className='mainwrap'>
       <div className='aside'>
@@ -44,7 +82,7 @@ const EditorPage = () => {
           <button className='btn leavebtn'>Leave</button>
       </div>
       <div className='editorWrap'>
-          <Editor></Editor>
+          <Editor socketRef={socketRef} roomId={roomId}/>
         </div>
     </div>
   )

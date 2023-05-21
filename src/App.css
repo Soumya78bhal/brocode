@@ -72,15 +72,16 @@
   color: aliceblue;
   display: grid;
   grid-template-columns: 230px 1fr;
-  overflow-y: hidden;
+  max-height: 100vh;
  
 }
 
 .aside{
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  margin: 10px;
   border-right: 2px solid #424242;
+  max-height: 100vh;
 }
 .asideinner{
   border-top: 2px solid #424242;
@@ -114,8 +115,12 @@ input{
   overflow-x:hidden;
 }
 .CodeMirror{
-  height:100% !important;
+  height:100vh !important;
   font-size: 20px;
 }
-
-
+.editorWrap{
+  max-height: 100vh;
+  overflow-y: auto;
+  overflow-x: auto;
+  
+}
